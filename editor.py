@@ -25,7 +25,6 @@ body{
     width:100%;
 }
 
-/* FONDO ROSADO QUE SE ANIMA */
 .fondoBase{
     background: linear-gradient(160deg, #ffd6e8 0%, #ffb3cd 40%, #ffc2d9 70%, #ffe0ec 100%);
     background-size: 300% 300%;
@@ -50,7 +49,6 @@ body{
     100%{background-position:0% 50%;}
 }
 
-/* PARTÍCULAS FLOTANTES — siempre presentes */
 .particula{
     position:fixed;
     font-size:22px;
@@ -67,7 +65,6 @@ body{
     100%{ transform: translateY(110vh)  rotate(360deg); opacity:0; }
 }
 
-/* PANTALLAS */
 .pantalla{
     position:fixed;
     inset:0;
@@ -83,7 +80,6 @@ body{
 
 .oculto{opacity:0;pointer-events:none;}
 
-/* ── PANTALLA 1 ── */
 #p1 h1{
     font-family:'Dancing Script',cursive;
     font-size: clamp(22px,5vw,38px);
@@ -115,7 +111,6 @@ body{
     70%{transform:scale(1);}
 }
 
-/* ── PANTALLA 2 ── */
 #p2 .caja{
     background: rgba(255,255,255,0.72);
     backdrop-filter: blur(12px);
@@ -175,7 +170,6 @@ button{
 button:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,77,109,0.5);}
 button:active{transform:translateY(0);}
 
-/* ── PANTALLA 3 ── */
 #p3{
     overflow-y:auto;
     padding:20px 0 40px;
@@ -231,11 +225,11 @@ button:active{transform:translateY(0);}
     margin-top:18px;
 }
 
-/* GIFS */
+/* ── TARJETAS ANIMADAS (reemplazan los GIFs) ── */
 .gifs{
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:stretch;
     gap:20px;
     flex-wrap:wrap;
     margin-top:24px;
@@ -243,23 +237,102 @@ button:active{transform:translateY(0);}
 }
 
 .gif-frame{
-    background:rgba(255,255,255,0.8);
+    background:rgba(255,255,255,0.85);
     border-radius:20px;
-    padding:10px;
+    padding:16px 12px 12px;
     box-shadow:0 6px 24px rgba(255,80,130,0.2);
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:8px;
+    gap:10px;
     width:160px;
 }
 
-.gif-frame img{
+/* Escena animada 1 — oso con corazón */
+.escena{
     width:140px;
     height:140px;
-    object-fit:cover;
     border-radius:14px;
-    margin:0;
+    background: linear-gradient(135deg,#fff0f6,#ffd6e8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.oso{
+    font-size:62px;
+    animation: osito 1.8s ease-in-out infinite;
+    position:relative;
+    z-index:2;
+}
+@keyframes osito{
+    0%,100%{transform:scale(1) rotate(-3deg);}
+    50%{transform:scale(1.12) rotate(3deg);}
+}
+
+.corazon-anim{
+    font-size:22px;
+    position:absolute;
+    animation: subir 1.8s ease-in-out infinite;
+}
+.corazon-anim:nth-child(2){top:18px;left:28px;animation-delay:0s;}
+.corazon-anim:nth-child(3){top:10px;right:24px;animation-delay:0.6s;font-size:16px;}
+.corazon-anim:nth-child(4){top:22px;right:44px;animation-delay:1.1s;font-size:14px;}
+
+@keyframes subir{
+    0%{opacity:0;transform:translateY(0) scale(0.5);}
+    30%{opacity:1;transform:translateY(-18px) scale(1);}
+    80%{opacity:0.6;transform:translateY(-50px) scale(0.8);}
+    100%{opacity:0;transform:translateY(-70px) scale(0.5);}
+}
+
+/* Escena 2 — mamá e hijo */
+.mama-hijo{
+    font-size:0;
+    display:flex;
+    align-items:flex-end;
+    gap:4px;
+    animation: abrazo 2.2s ease-in-out infinite;
+}
+.mama-hijo span{font-size:52px;}
+@keyframes abrazo{
+    0%,100%{transform:scale(1);}
+    40%{transform:scale(1.1);}
+    60%{transform:scale(1.08);}
+}
+
+/* Escena 3 — flores girando */
+.flores-wrap{
+    position:relative;
+    width:110px;
+    height:110px;
+}
+.flor-centro{
+    font-size:46px;
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    animation: girar 4s linear infinite;
+}
+@keyframes girar{
+    from{transform:translate(-50%,-50%) rotate(0deg);}
+    to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+.flor-orbit{
+    font-size:22px;
+    position:absolute;
+    animation: orbitar 3s linear infinite;
+    transform-origin: 55px 55px;
+}
+.flor-orbit:nth-child(2){top:-4px;left:44px;animation-delay:0s;}
+.flor-orbit:nth-child(3){top:44px;right:-4px;animation-delay:-1s;}
+.flor-orbit:nth-child(4){bottom:-4px;left:44px;animation-delay:-2s;}
+.flor-orbit:nth-child(5){top:44px;left:-4px;animation-delay:-1.5s;}
+@keyframes orbitar{
+    from{transform:rotate(0deg) translateX(14px) rotate(0deg);}
+    to{transform:rotate(360deg) translateX(14px) rotate(-360deg);}
 }
 
 .gif-frame span{
@@ -269,7 +342,6 @@ button:active{transform:translateY(0);}
     text-align:center;
 }
 
-/* Divisor decorativo */
 .divisor{
     font-size:22px;
     letter-spacing:8px;
@@ -282,7 +354,6 @@ button:active{transform:translateY(0);}
 
 <body class="fondoBase" id="cuerpo">
 
-<!-- CONTENEDOR DE PARTÍCULAS (siempre activo) -->
 <div id="particulas"></div>
 
 <!-- ══ PANTALLA 1 ══ -->
@@ -335,32 +406,50 @@ button:active{transform:translateY(0);}
         <div class="firma">Con todo mi amor 💖<br>¡Te amo para siempre! 🌹</div>
     </div>
 
-    <!-- GIFS ANIMADOS -->
+    <!-- TARJETAS ANIMADAS — sin dependencia de URLs externas -->
     <div class="gifs">
+
+        <!-- Tarjeta 1: Oso con corazones -->
         <div class="gif-frame">
-            <!-- Oso animado con corazón (Tenor/Giphy embed) -->
-            <img src="https://media.tenor.com/AIMbFnVdoK8AAAAi/love-heart.gif" alt="Oso con corazón">
+            <div class="escena">
+                <span class="corazon-anim">💖</span>
+                <span class="corazon-anim">💕</span>
+                <span class="corazon-anim">❤️</span>
+                <div class="oso">🐻</div>
+            </div>
             <span>🐻 Con amor 💖</span>
         </div>
+
+        <!-- Tarjeta 2: Mamá e hijo -->
         <div class="gif-frame">
-            <!-- Mamá abrazando hijo -->
-            <img src="https://media.tenor.com/r3Qf5i8b4XsAAAAi/love-mother.gif" alt="Mamá abrazo">
+            <div class="escena">
+                <div class="mama-hijo">
+                    <span>👩</span><span>🧒</span>
+                </div>
+            </div>
             <span>🤗 Te abrazo siempre</span>
         </div>
+
+        <!-- Tarjeta 3: Flores girando -->
         <div class="gif-frame">
-            <!-- Flores animadas -->
-            <img src="https://media.tenor.com/SvA3GVfhGfgAAAAi/flowers-bouquet.gif" alt="Flores">
+            <div class="escena">
+                <div class="flores-wrap">
+                    <div class="flor-centro">🌸</div>
+                    <div class="flor-orbit">🌹</div>
+                    <div class="flor-orbit">🌷</div>
+                    <div class="flor-orbit">🌼</div>
+                    <div class="flor-orbit">🌺</div>
+                </div>
+            </div>
             <span>🌹 Para ti mamá</span>
         </div>
+
     </div>
 
 </div>
 
 <script>
 
-// ═══════════════════════════════
-//  PARTÍCULAS — arrancan de una
-// ═══════════════════════════════
 const contenedor = document.getElementById("particulas");
 const emojis = ["🌹","💖","🌸","❤️","🌺","💕","🌷","💗","✨","🌼"];
 
@@ -377,16 +466,9 @@ function crearParticula(){
     setTimeout(()=>el.remove(), (dur+1)*1000);
 }
 
-// Crear partículas continuamente desde el inicio
 setInterval(crearParticula, 220);
-
-// Sembrar partículas iniciales para que no se vea vacío al cargar
 for(let i=0;i<30;i++) crearParticula();
 
-
-// ═══════════════════════════════
-//  NAVEGACIÓN
-// ═══════════════════════════════
 function abrir(){
     document.getElementById("p1").classList.add("oculto");
     document.getElementById("p2").classList.remove("oculto");
