@@ -1,6 +1,3 @@
-# editor.py
-
-```python
 from flask import Flask
 
 app = Flask(__name__)
@@ -9,10 +6,10 @@ app = Flask(__name__)
 def inicio():
     return """
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mamá ❤️</title>
 
     <style>
@@ -242,63 +239,59 @@ def inicio():
 
     </style>
 </head>
+
 <body>
 
     <!-- PANTALLA 1 -->
+    <div class="pantalla" id="pantalla1">
 
-    <div class='pantalla' id='pantalla1'>
+        <div class="brillo-corazon"></div>
 
-        <div class='brillo-corazon'></div>
-
-        <div class='corazon' onclick='abrirRegistro()'>❤️</div>
+        <div class="corazon" onclick="abrirRegistro()">❤️</div>
 
         <h1>Tócame Mamá</h1>
 
     </div>
 
-
     <!-- PANTALLA 2 -->
+    <div class="pantalla oculto" id="pantalla2">
 
-    <div class='pantalla oculto' id='pantalla2'>
-
-        <div class='registro-box'>
+        <div class="registro-box">
 
             <h2>🌸 Bienvenida 🌸</h2>
 
-            <input type='text' id='nombre' placeholder='Escribe tu nombre'>
+            <input type="text" id="nombre" placeholder="Escribe tu nombre">
 
-            <button onclick='entrar()'>Entrar ❤️</button>
+            <button onclick="entrar()">Entrar ❤️</button>
 
         </div>
 
     </div>
 
-
     <!-- PANTALLA 3 -->
+    <div class="pantalla oculto" id="pantalla3">
 
-    <div class='pantalla oculto' id='pantalla3'>
-
-        <div class='sol'>
-            <span class='s1'>🌸</span>
-            <span class='s2'>🌹</span>
-            <span class='s3'>💖</span>
-            <span class='s4'>🌷</span>
-            <span class='s5'>❤️</span>
-            <span class='s6'>🌺</span>
-            <span class='s7'>✨</span>
-            <span class='s8'>🌼</span>
+        <div class="sol">
+            <span class="s1">🌸</span>
+            <span class="s2">🌹</span>
+            <span class="s3">💖</span>
+            <span class="s4">🌷</span>
+            <span class="s5">❤️</span>
+            <span class="s6">🌺</span>
+            <span class="s7">✨</span>
+            <span class="s8">🌼</span>
         </div>
 
-        <div class='frase f1'>Eres mi lugar seguro ❤️</div>
-        <div class='frase f2'>Gracias por nunca rendirte 🌸</div>
-        <div class='frase f3'>Tu amor ilumina mi vida ✨</div>
-        <div class='frase f4'>La mejor mamá del mundo 🌷</div>
+        <div class="frase f1">Eres mi lugar seguro ❤️</div>
+        <div class="frase f2">Gracias por nunca rendirte 🌸</div>
+        <div class="frase f3">Tu amor ilumina mi vida ✨</div>
+        <div class="frase f4">La mejor mamá del mundo 🌷</div>
 
-        <div class='final'>
+        <div class="final">
 
-            <h1 class='titulo-final' id='saludo'></h1>
+            <h1 class="titulo-final" id="saludo"></h1>
 
-            <div class='mensaje'>
+            <div class="mensaje">
                 Gracias por cada sacrificio, cada abrazo y cada consejo.
                 <br><br>
                 A veces el tiempo pasa tan rápido que olvidamos decir lo importante:
@@ -317,18 +310,16 @@ def inicio():
 
     </div>
 
-
     <script>
 
         function abrirRegistro(){
 
             document.getElementById('pantalla1').classList.add('oculto');
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 document.getElementById('pantalla2').classList.remove('oculto');
-            },500)
+            }, 500);
         }
-
 
         function entrar(){
 
@@ -341,7 +332,7 @@ def inicio():
 
             document.getElementById('pantalla2').classList.add('oculto');
 
-            setTimeout(()=>{
+            setTimeout(() => {
 
                 document.getElementById('pantalla3').classList.remove('oculto');
 
@@ -350,70 +341,40 @@ def inicio():
 
                 crearFlores();
 
-            },500)
+            }, 500);
         }
-
 
         function crearFlores(){
 
             let emojis = ['🌸','🌷','🌹','💖','✨','🌺'];
 
-            setInterval(()=>{
+            setInterval(() => {
 
                 let flor = document.createElement('div');
 
                 flor.classList.add('flor');
 
-                flor.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+                flor.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
-                flor.style.left = Math.random()*100 + 'vw';
+                flor.style.left = Math.random() * 100 + 'vw';
 
                 flor.style.animationDuration =
-                (Math.random()*5 + 5) + 's';
+                (Math.random() * 5 + 5) + 's';
 
                 document.body.appendChild(flor);
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     flor.remove();
-                },10000)
+                }, 10000);
 
-            },300)
+            }, 300);
         }
 
     </script>
 
 </body>
 </html>
-    """
+"""
 
 if __name__ == '__main__':
-    app.run(debug=True)
-```
-
-# Cómo usarlo
-
-1. Borra todo lo que tienes en `editor.py`
-2. Pega este código completo
-3. Guarda con `CTRL + S`
-4. En la terminal presiona `CTRL + C`
-5. Ejecuta otra vez:
-
-```bash
-python editor.py
-```
-
-6. Abre:
-
-```text
-http://127.0.0.1:5000
-```
-
-Ahora tendrás:
-
-* Un corazón interactivo ❤️
-* Registro con nombre 🌸
-* Flores flotando ✨
-* Sol girando de flores 🌷
-* Mensajes animados 💖
-* Diseño moderno y emocional
-* Experiencia interactiva tipo mini app
+    app.run(host='0.0.0.0', port=10000)
