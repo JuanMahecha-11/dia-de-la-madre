@@ -10,7 +10,7 @@ def inicio():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Mamá</title>
+<title>Para Mamá 💖</title>
 
 <style>
 
@@ -18,7 +18,20 @@ body{
     margin:0;
     overflow:hidden;
     font-family:Arial;
-    background:linear-gradient(135deg,#ffe6e6,#ffd1dc);
+    background: linear-gradient(135deg,#ffd1dc,#ffe6f0);
+}
+
+/* CAMBIO DE FONDO FINAL */
+.fondoFinal{
+    background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:fondo 8s ease infinite;
+}
+
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
 /* PANTALLAS */
@@ -35,35 +48,40 @@ body{
 
 .oculto{opacity:0;pointer-events:none;}
 
-/* CORAZON PUERTA */
+/* CORAZON */
 .corazon{
-    font-size:200px;
+    font-size:180px;
     cursor:pointer;
-    transition:1s;
+    animation:latido 1.5s infinite;
 }
 
-.abrir{
-    transform:scale(3) rotateY(180deg);
-    opacity:0;
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
 }
 
-/* TEXTO */
-h1{
-    color:black;
+/* INPUT */
+input{
+    padding:15px;
+    border-radius:10px;
+    border:none;
 }
 
-/* REGISTRO */
-.box{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
+/* BOTON */
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
 }
 
-/* EFECTOS */
+/* FLORES Y CORAZONES */
 .flor,.corazon-flotante{
     position:absolute;
-    font-size:30px;
+    font-size:25px;
     animation:caer 6s linear infinite;
 }
 
@@ -76,12 +94,18 @@ h1{
 .final{
     text-align:center;
     color:black;
-    font-size:30px;
-    padding:20px;
+    font-size:20px;
+    background:rgba(255,255,255,0.7);
+    padding:25px;
+    border-radius:20px;
+    width:80%;
 }
 
-.nombre-flotante{
-    font-size:50px;
+/* NOMBRE */
+.nombre{
+    font-size:40px;
+    color:white;
+    text-shadow:0 0 10px black;
     animation:flotar 3s infinite;
 }
 
@@ -91,11 +115,11 @@ h1{
     100%{transform:translateY(0);}
 }
 
-/* ESPACIO FOTOS */
-.fotos img{
+/* FOTOS */
+img{
     width:120px;
-    border-radius:15px;
     margin:10px;
+    border-radius:10px;
 }
 
 </style>
@@ -106,45 +130,43 @@ h1{
 <!-- PANTALLA 1 -->
 <div class="pantalla" id="p1">
     <div class="corazon" onclick="abrir()">❤️</div>
-    <h1>Haz clic en el corazón</h1>
+    <h1>Haz clic en el corazón 💖</h1>
 </div>
 
 <!-- PANTALLA 2 -->
 <div class="pantalla oculto" id="p2">
-    <div class="box">
-        <h2>Escribe tu nombre</h2>
-        <input id="nombre" type="text">
-        <button onclick="entrar()">Entrar</button>
-    </div>
+    <h2>Escribe tu nombre</h2>
+    <input id="nombre">
+    <button onclick="entrar()">Entrar</button>
 </div>
 
 <!-- PANTALLA 3 -->
 <div class="pantalla oculto" id="p3">
 
-    <div class="nombre-flotante" id="saludo"></div>
+    <div class="nombre" id="saludo"></div>
 
     <div class="final">
-        Mamá eres el amor más bonito del mundo ❤️
-        <br>
-        Gracias por todo lo que haces por mí 🌸
+        Gracias mamá por ser el amor más bonito del mundo ❤️<br><br>
+
+        Eres la persona que ilumina cada día con tu esfuerzo, tu cariño y tu fuerza.<br><br>
+
+        Gracias por nunca rendirte, por cuidarme siempre y por darme todo sin pedir nada a cambio.<br><br>
+
+        Eres mi ejemplo de vida, mi paz y mi alegría 🌸<br><br>
+
+        Te amo con todo mi corazón 💖
     </div>
 
-    <div class="fotos">
-        <!-- AQUÍ PUEDES PONER FOTOS -->
-        <img src="https://i.postimg.cc/13853d0B/image.png">
-        <img src="https://i.postimg.cc/v1tS7c6n/image.png">
-    </div>
+    <img src="https://i.imgur.com/8Km9tLL.jpg">
+    <img src="https://i.imgur.com/2nCt3Sbl.jpg">
 
 </div>
 
 <script>
 
 function abrir(){
-    document.querySelector("#p1 .corazon").classList.add("abrir");
-    setTimeout(()=>{
-        document.getElementById("p1").classList.add("oculto");
-        document.getElementById("p2").classList.remove("oculto");
-    },800);
+    document.getElementById("p1").classList.add("oculto");
+    document.getElementById("p2").classList.remove("oculto");
 }
 
 function entrar(){
@@ -159,22 +181,25 @@ function entrar(){
     document.getElementById("p2").classList.add("oculto");
     document.getElementById("p3").classList.remove("oculto");
 
-    document.getElementById("saludo").innerHTML =
-    "Feliz Día Mamá de " + n + " ❤️";
+    // CAMBIO DE FONDO
+    document.body.classList.add("fondoFinal");
 
-    crearEfectos();
+    document.getElementById("saludo").innerHTML =
+    "Feliz día Mamá de " + n + " 💖";
+
+    efectos();
 }
 
-function crearEfectos(){
+function efectos(){
 
     setInterval(()=>{
 
-        let rosa = document.createElement("div");
-        rosa.classList.add("flor");
-        rosa.innerHTML = "🌹";
-        rosa.style.left = Math.random()*100+"vw";
-        document.body.appendChild(rosa);
-        setTimeout(()=>rosa.remove(),6000);
+        let r = document.createElement("div");
+        r.classList.add("flor");
+        r.innerHTML = "🌹";
+        r.style.left = Math.random()*100+"vw";
+        document.body.appendChild(r);
+        setTimeout(()=>r.remove(),6000);
 
     },300);
 
