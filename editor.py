@@ -8,369 +8,189 @@ def inicio():
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mamá ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mamá</title>
 
-    <style>
+<style>
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:Arial;
+    background:linear-gradient(135deg,#ffe6e6,#ffd1dc);
+}
 
-        body{
-            overflow:hidden;
-            font-family:'Segoe UI', sans-serif;
-            background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            position:relative;
-        }
+/* PANTALLAS */
+.pantalla{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    transition:1s;
+}
 
-        .pantalla{
-            position:absolute;
-            width:100%;
-            height:100%;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-            transition:1s;
-        }
+.oculto{opacity:0;pointer-events:none;}
 
-        .oculto{
-            opacity:0;
-            pointer-events:none;
-            transform:scale(0.9);
-        }
+/* CORAZON PUERTA */
+.corazon{
+    font-size:200px;
+    cursor:pointer;
+    transition:1s;
+}
 
-        .corazon{
-            font-size:180px;
-            cursor:pointer;
-            animation:latido 1s infinite;
-            transition:0.5s;
-            filter:drop-shadow(0 0 20px rgba(255,0,90,0.5));
-        }
+.abrir{
+    transform:scale(3) rotateY(180deg);
+    opacity:0;
+}
 
-        .corazon:hover{
-            transform:scale(1.1);
-        }
+/* TEXTO */
+h1{
+    color:black;
+}
 
-        @keyframes latido{
-            0%{transform:scale(1);}
-            50%{transform:scale(1.15);}
-            100%{transform:scale(1);}
-        }
+/* REGISTRO */
+.box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
 
-        h1{
-            color:white;
-            margin-top:20px;
-            font-size:55px;
-            text-shadow:0 5px 10px rgba(0,0,0,0.2);
-        }
+/* EFECTOS */
+.flor,.corazon-flotante{
+    position:absolute;
+    font-size:30px;
+    animation:caer 6s linear infinite;
+}
 
-        .registro-box{
-            background:rgba(255,255,255,0.25);
-            backdrop-filter:blur(12px);
-            padding:50px;
-            border-radius:35px;
-            text-align:center;
-            box-shadow:0 10px 40px rgba(0,0,0,0.2);
-            width:450px;
-        }
+@keyframes caer{
+    from{transform:translateY(-10%);}
+    to{transform:translateY(110vh);}
+}
 
-        .registro-box h2{
-            color:white;
-            margin-bottom:25px;
-            font-size:40px;
-        }
+/* TEXTO FINAL */
+.final{
+    text-align:center;
+    color:black;
+    font-size:30px;
+    padding:20px;
+}
 
-        input{
-            width:100%;
-            padding:18px;
-            border:none;
-            border-radius:20px;
-            font-size:20px;
-            outline:none;
-            margin-bottom:20px;
-        }
+.nombre-flotante{
+    font-size:50px;
+    animation:flotar 3s infinite;
+}
 
-        button{
-            background:#ff4f81;
-            color:white;
-            border:none;
-            padding:18px 35px;
-            border-radius:20px;
-            font-size:20px;
-            cursor:pointer;
-            transition:0.3s;
-        }
+@keyframes flotar{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+    100%{transform:translateY(0);}
+}
 
-        button:hover{
-            transform:scale(1.05);
-            background:#ff2f6d;
-        }
+/* ESPACIO FOTOS */
+.fotos img{
+    width:120px;
+    border-radius:15px;
+    margin:10px;
+}
 
-        .final{
-            text-align:center;
-            padding:40px;
-            position:relative;
-            z-index:2;
-        }
-
-        .titulo-final{
-            color:white;
-            font-size:65px;
-            margin-bottom:25px;
-            text-shadow:0 5px 10px rgba(0,0,0,0.3);
-            animation:brillo 2s infinite;
-        }
-
-        @keyframes brillo{
-            0%{opacity:1;}
-            50%{opacity:0.7;}
-            100%{opacity:1;}
-        }
-
-        .mensaje{
-            color:white;
-            font-size:28px;
-            width:80%;
-            margin:auto;
-            line-height:1.8;
-            background:rgba(255,255,255,0.18);
-            padding:30px;
-            border-radius:30px;
-            backdrop-filter:blur(10px);
-            box-shadow:0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .flor{
-            position:absolute;
-            font-size:45px;
-            animation:flotar linear infinite;
-            opacity:0.8;
-        }
-
-        @keyframes flotar{
-            from{
-                transform:translateY(110vh) rotate(0deg);
-            }
-
-            to{
-                transform:translateY(-120vh) rotate(360deg);
-            }
-        }
-
-        .sol{
-            position:absolute;
-            width:500px;
-            height:500px;
-            border-radius:50%;
-            animation:girar 25s linear infinite;
-            z-index:1;
-        }
-
-        @keyframes girar{
-            from{
-                transform:rotate(0deg);
-            }
-
-            to{
-                transform:rotate(360deg);
-            }
-        }
-
-        .sol span{
-            position:absolute;
-            font-size:50px;
-        }
-
-        .s1{top:0; left:50%;}
-        .s2{top:15%; right:10%;}
-        .s3{top:50%; right:0;}
-        .s4{bottom:15%; right:10%;}
-        .s5{bottom:0; left:50%;}
-        .s6{bottom:15%; left:10%;}
-        .s7{top:50%; left:0;}
-        .s8{top:15%; left:10%;}
-
-        .frase{
-            position:absolute;
-            color:white;
-            font-size:24px;
-            font-weight:bold;
-            animation:aparecer 6s infinite;
-            opacity:0;
-            text-shadow:0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        @keyframes aparecer{
-            0%{opacity:0; transform:translateY(20px);}
-            20%{opacity:1; transform:translateY(0px);}
-            80%{opacity:1;}
-            100%{opacity:0; transform:translateY(-20px);}
-        }
-
-        .f1{top:10%; left:10%; animation-delay:0s;}
-        .f2{top:20%; right:8%; animation-delay:2s;}
-        .f3{bottom:15%; left:12%; animation-delay:4s;}
-        .f4{bottom:10%; right:10%; animation-delay:6s;}
-
-        .brillo-corazon{
-            position:absolute;
-            width:250px;
-            height:250px;
-            background:rgba(255,255,255,0.2);
-            border-radius:50%;
-            filter:blur(40px);
-            animation:pulse 2s infinite;
-        }
-
-        @keyframes pulse{
-            0%{transform:scale(1); opacity:0.7;}
-            50%{transform:scale(1.3); opacity:0.3;}
-            100%{transform:scale(1); opacity:0.7;}
-        }
-
-    </style>
+</style>
 </head>
 
 <body>
 
-    <!-- PANTALLA 1 -->
-    <div class="pantalla" id="pantalla1">
+<!-- PANTALLA 1 -->
+<div class="pantalla" id="p1">
+    <div class="corazon" onclick="abrir()">❤️</div>
+    <h1>Haz clic en el corazón</h1>
+</div>
 
-        <div class="brillo-corazon"></div>
+<!-- PANTALLA 2 -->
+<div class="pantalla oculto" id="p2">
+    <div class="box">
+        <h2>Escribe tu nombre</h2>
+        <input id="nombre" type="text">
+        <button onclick="entrar()">Entrar</button>
+    </div>
+</div>
 
-        <div class="corazon" onclick="abrirRegistro()">❤️</div>
+<!-- PANTALLA 3 -->
+<div class="pantalla oculto" id="p3">
 
-        <h1>Tócame Mamá</h1>
+    <div class="nombre-flotante" id="saludo"></div>
 
+    <div class="final">
+        Mamá eres el amor más bonito del mundo ❤️
+        <br>
+        Gracias por todo lo que haces por mí 🌸
     </div>
 
-    <!-- PANTALLA 2 -->
-    <div class="pantalla oculto" id="pantalla2">
-
-        <div class="registro-box">
-
-            <h2>🌸 Bienvenida 🌸</h2>
-
-            <input type="text" id="nombre" placeholder="Escribe tu nombre">
-
-            <button onclick="entrar()">Entrar ❤️</button>
-
-        </div>
-
+    <div class="fotos">
+        <!-- AQUÍ PUEDES PONER FOTOS -->
+        <img src="https://i.postimg.cc/13853d0B/image.png">
+        <img src="https://i.postimg.cc/v1tS7c6n/image.png">
     </div>
 
-    <!-- PANTALLA 3 -->
-    <div class="pantalla oculto" id="pantalla3">
+</div>
 
-        <div class="sol">
-            <span class="s1">🌸</span>
-            <span class="s2">🌹</span>
-            <span class="s3">💖</span>
-            <span class="s4">🌷</span>
-            <span class="s5">❤️</span>
-            <span class="s6">🌺</span>
-            <span class="s7">✨</span>
-            <span class="s8">🌼</span>
-        </div>
+<script>
 
-        <div class="frase f1">Eres mi lugar seguro ❤️</div>
-        <div class="frase f2">Gracias por nunca rendirte 🌸</div>
-        <div class="frase f3">Tu amor ilumina mi vida ✨</div>
-        <div class="frase f4">La mejor mamá del mundo 🌷</div>
+function abrir(){
+    document.querySelector("#p1 .corazon").classList.add("abrir");
+    setTimeout(()=>{
+        document.getElementById("p1").classList.add("oculto");
+        document.getElementById("p2").classList.remove("oculto");
+    },800);
+}
 
-        <div class="final">
+function entrar(){
 
-            <h1 class="titulo-final" id="saludo"></h1>
+    let n = document.getElementById("nombre").value;
 
-            <div class="mensaje">
-                Gracias por cada sacrificio, cada abrazo y cada consejo.
-                <br><br>
-                A veces el tiempo pasa tan rápido que olvidamos decir lo importante:
-                eres una mujer increíble.
-                <br><br>
-                Gracias por estar incluso cuando nadie más estuvo.
-                Gracias por enseñarme a seguir adelante.
-                <br><br>
-                Hoy no quería darte solo un regalo.
-                Quería darte un pequeño universo hecho especialmente para ti ❤️
-                <br><br>
-                Te amo muchísimo mamá 🌸
-            </div>
+    if(n==""){
+        alert("Escribe tu nombre");
+        return;
+    }
 
-        </div>
+    document.getElementById("p2").classList.add("oculto");
+    document.getElementById("p3").classList.remove("oculto");
 
-    </div>
+    document.getElementById("saludo").innerHTML =
+    "Feliz Día Mamá de " + n + " ❤️";
 
-    <script>
+    crearEfectos();
+}
 
-        function abrirRegistro(){
+function crearEfectos(){
 
-            document.getElementById('pantalla1').classList.add('oculto');
+    setInterval(()=>{
 
-            setTimeout(() => {
-                document.getElementById('pantalla2').classList.remove('oculto');
-            }, 500);
-        }
+        let rosa = document.createElement("div");
+        rosa.classList.add("flor");
+        rosa.innerHTML = "🌹";
+        rosa.style.left = Math.random()*100+"vw";
+        document.body.appendChild(rosa);
+        setTimeout(()=>rosa.remove(),6000);
 
-        function entrar(){
+    },300);
 
-            let nombre = document.getElementById('nombre').value;
+    setInterval(()=>{
 
-            if(nombre.trim() === ''){
-                alert('Escribe tu nombre 🌸');
-                return;
-            }
+        let c = document.createElement("div");
+        c.classList.add("corazon-flotante");
+        c.innerHTML = "❤️";
+        c.style.left = Math.random()*100+"vw";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),6000);
 
-            document.getElementById('pantalla2').classList.add('oculto');
+    },500);
+}
 
-            setTimeout(() => {
-
-                document.getElementById('pantalla3').classList.remove('oculto');
-
-                document.getElementById('saludo').innerHTML =
-                'Feliz Día ' + nombre + ' ❤️';
-
-                crearFlores();
-
-            }, 500);
-        }
-
-        function crearFlores(){
-
-            let emojis = ['🌸','🌷','🌹','💖','✨','🌺'];
-
-            setInterval(() => {
-
-                let flor = document.createElement('div');
-
-                flor.classList.add('flor');
-
-                flor.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-
-                flor.style.left = Math.random() * 100 + 'vw';
-
-                flor.style.animationDuration =
-                (Math.random() * 5 + 5) + 's';
-
-                document.body.appendChild(flor);
-
-                setTimeout(() => {
-                    flor.remove();
-                }, 10000);
-
-            }, 300);
-        }
-
-    </script>
+</script>
 
 </body>
 </html>
